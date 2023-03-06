@@ -2,6 +2,7 @@ package main
 
 import (
 	"math/rand"
+	"strings"
 
 	"github.com/pkg/profile"
 )
@@ -11,6 +12,7 @@ const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 func main() {
 	defer profile.Start(profile.MemProfile, profile.MemProfileRate(1)).Stop()
 	concat(100)
+	// concat1(100)
 }
 
 func randomString(n int) string {
@@ -27,6 +29,14 @@ func concat(n int) string {
 		s += randomString(n)
 	}
 	return s
+}
+
+func concat1(n int) string {
+	var s strings.Builder
+	for i := 0; i < n; i++ {
+		s.WriteString(randomString(n))
+	}
+	return s.String()
 }
 
 // go run mem-pprof.go
